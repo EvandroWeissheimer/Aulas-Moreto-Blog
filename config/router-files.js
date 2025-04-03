@@ -3,12 +3,13 @@
          * Blog REST
          */
         'blog/api/v1/rest': [
-            'post',
-            'reply',
+            'post-resource',
+           // 'reply',
         ],
         /**
          * Blog RPC
          */
+    
         'blog/api/v1/rpc':[
 
         ],
@@ -20,7 +21,7 @@
 
     function toRelativePaths(folder){
         return filename => {
-            return `..src/module/${folder}/${filename}`;
+            return `../src/module/${folder}/${filename}`;
         };
     }
 

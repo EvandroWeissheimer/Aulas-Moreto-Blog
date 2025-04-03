@@ -11,11 +11,9 @@ dotenv.config(); // carrega as variaveis de ambiente
 // app.use(bodyParser.json()); // para pegar os dados do corpo da requisicao
 
 const app = require('./config/router-factory');
-const app = createServer(app);
+const httpServer = createServer(app); // Alterado para evitar conflito de nomes
+const http = httpServer; // Define `http` corretamente
 
-
-
-// call back é uma funcao que executa após um determinado evendo acontecer ( se tiver algum erro apresenta no console o erro)
 process.on('SIGINT', () => http.close((error => {
     if(error){
         console.log(`${error.name}: ${error.message}`);
@@ -23,5 +21,4 @@ process.on('SIGINT', () => http.close((error => {
     process.exit(error ? 1 : 0);
 })));
 
-
-http.listen(process.env.PORT, () => console.log(`Servidor rodando na porta ${process.env.PORT}`)); // servidor ouvindo na porta 3000
+http.listen(process.env.PORT, () => console.log(`Servidor rodando na porta ${process.env.PORT}`));
